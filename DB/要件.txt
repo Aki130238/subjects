@@ -1,0 +1,17 @@
+● Web技術入門シリーズカリキュラムで作成したWebアプリケーションに機能追加する形で実装を行うこと
+● カリキュラムを参考にして、「`（DocumentRootの値）/`」、というURLで開く任意のHTMLページを一枚作成すること。（Not Foundを出さないようにすること。ページの内容について詳細は問わない）
+	データベースの設定を変更した場合は一度DBを再起動する必要がある。
+● カリキュラムを参考にして、ボタンを押すと、譲渡先が自家消費ではないもののgoyaの情報を載せたページが出てくる機能を実装すること
+●- カリキュラムを参考にして、ボタンを押すと、品質が悪いもの（false）のgoyaの情報を載せたページが出てくる機能を実装すること
+
+cropsテーブル
+ length   | double precision |           |          | 
+ weight   | integer          |           |          | 
+ quality  | boolean          |           |          | 
+ give_for | text             |           |          | 
+ date     | date   
+
+
+pricesテーブル
+ give_for | text    |           |          | 
+ price    | integer |     
