@@ -1,0 +1,46 @@
+.form{
+
+}
+
+.form {
+  border-style: none;
+}
+
+.form tr{
+  height: 7rem;
+}
+
+.form th{
+  width: 150px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.form td{
+  width: 480px;
+}
+
+.submit{
+  text-align: center;
+}
+
+input#submitbtn:hover {
+  opacity: 0.6;
+}
+
+input#submitbtn {
+  margin-top: 30px;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  background-color: #F5B4B3;
+  color: #fff;
+  border-style: none;
+}
+
+input.form-content{
+  width: 100%;
+}
+
+textarea.form-content{
+  width: 100%;
+}
