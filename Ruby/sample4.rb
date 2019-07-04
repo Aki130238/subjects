@@ -1,0 +1,61 @@
+class Player
+  def hand
+    puts "0〜2までの数字を入力してください。"
+    puts '0:グー'
+    puts '1:チョキ'
+    puts '2:パー'
+    inp = gets.chomp #getsメソッドはターミナルからキーボードで入力された値を文字列として取得する
+    inp = inp.tr('０-９ａ-ｚＡ-Ｚ','0-9a-zA-Z')
+    if inp == "0" || inp == "1" || inp == "2" #文字列で入力されているため数字の１ではなく文字列の"1"として比較する
+      return #trueなら処理を抜ける
+    else #falseなら以下の処理
+      puts "やりなおし"
+      return hand #自身の関数を呼び出して、処理を続行する
+    end
+  end
+end
+
+class Enemy
+  def hand
+    random = Random.new() #乱数の種を省略
+    random.rand(0..2) #0〜2までの乱数
+  end
+end
+
+class Janken
+  def pon(player_hand, enemy_hand)
+    enemy = enemy_hand
+    if enemy == 0
+      enemy = "グー" #相手の手が0だったらグーを代入
+    elsif enemy == 1
+      enemy = "チョキ" #相手の手が1だったらチョキを代入
+    elsif enemy == 2
+      enemy = "パー" #相手の手が2だったらパーを代入
+    end
+    player_hand = player_hand.to_i #to_iメソッドは文字列を10進数の表現と見なして整数に変換する。inp変数に代入された入力値を整数型に変換する。
+    if player_hand == 0 || player_hand == 1 || player_hand == 2 #複数条件で分岐
+      if((player_hand - enemy_hand) + 3) % 3 == 2
+        puts "相手は#{enemy}を出しました。あなたの勝利です。"
+        return
+      end
+      if((player_hand - enemy_hand) + 3) % 3 == 1 #負け判定
+        puts "相手は#{enemy}を出しました。あなたの負けです。"
+        return
+      end
+      if((player_hand - enemy_hand) + 3) % 3 == 0 #分け判定
+        puts "相手は#{enemy}を出しました。あいこです。もう一度じゃんけんしてください。"
+        player = Player.new #スコープ外のクラスをスコープ内で作成する
+        enemy = Enemy.new #スコープ外のクラスをスコープ内で作成する
+        janken = Janken.new #スコープ外のクラスをスコープ内で作成する
+        return pon(player.hand, enemy.hand) #スコープ外のクラスをスコープ内で呼び出して同じ処理を続けられる。
+      end
+    end
+  end
+end
+
+player = Player.new
+enemy = Enemy.new
+janken = Janken.new
+
+# 下記の記述で、ジャンケンメソッドが起動される
+janken.pon(player.hand, enemy.hand)
